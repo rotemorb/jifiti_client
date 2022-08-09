@@ -1,17 +1,20 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <Persons msg="Jifity Transactions" />
+    <jifity-transactions></jifity-transactions>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import JifityTransactions from './components/JifityTransactions.vue';
+import Persons from './components/Persons.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Persons,
+    JifityTransactions
   }
 }
 </script>
