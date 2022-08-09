@@ -10,8 +10,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="row in rows" :key="row.id" @click="goToTransactions(row.id)">
-          <td>{{ row.id }}</td>
+        <tr
+          v-for="row in rows"
+          :key="row.appId"
+          @click="goToTransactions(row.appId)"
+        >
+          <td>{{ row.appId }}</td>
           <td>{{ row.name }}</td>
           <td>{{ row.phone }}</td>
           <td>{{ row.profession }}</td>
@@ -28,20 +32,20 @@ export default {
   {
     return {
       rows: [
-        { id: 1, name: "Chandler Bing", phone: '305-917-1301', profession: 'IT Manager' },
-        { id: 2, name: "Ross Geller", phone: '210-684-8953', profession: 'Paleontologist' },
-        { id: 3, name: "Rachel Green", phone: '765-338-0312', profession: 'Waitress' },
-        { id: 4, name: "Monica Geller", phone: '714-541-3336', profession: 'Head Chef' },
-        { id: 5, name: "Joey Tribbiani", phone: '972-297-6037', profession: 'Actor' },
-        { id: 6, name: "Phoebe Buffay", phone: '760-318-8376', profession: 'Masseuse' }
+        { appId: 1, name: "Chandler Bing", phone: '305-917-1301', profession: 'IT Manager' },
+        { appId: 2, name: "Ross Geller", phone: '210-684-8953', profession: 'Paleontologist' },
+        { appId: 3, name: "Rachel Green", phone: '765-338-0312', profession: 'Waitress' },
+        { appId: 4, name: "Monica Geller", phone: '714-541-3336', profession: 'Head Chef' },
+        { appId: 5, name: "Joey Tribbiani", phone: '972-297-6037', profession: 'Actor' },
+        { appId: 6, name: "Phoebe Buffay", phone: '760-318-8376', profession: 'Masseuse' }
       ]
     };
   },
   methods:
   {
-    goToTransactions(id)
+    goToTransactions(appId)
     {
-      console.log("hello", id);
+      this.$router.push({ name: 'Transactions', params: { appId } });
     }
   }
 }

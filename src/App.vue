@@ -3,7 +3,9 @@
     <h1>Jifity Transactions</h1>
     <nav>
       <router-link to="/">Persons</router-link> |
-      <router-link to="/Transactions">Transactions</router-link>
+      <router-link to="{ name: '/Transactions', params: { appId }}"
+        >Transactions</router-link
+      >
     </nav>
     <router-view />
   </div>
