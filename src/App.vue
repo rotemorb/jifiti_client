@@ -1,18 +1,22 @@
 <template>
   <div id="app">
     <h1>Jifity Transactions</h1>
-    <nav>
-      <router-link to="/">Persons</router-link> |
-      <router-link to="{ name: '/Transactions', params: { appId }}"
-        >Transactions</router-link
-      >
-    </nav>
     <router-view />
   </div>
 </template>
 
+<script>
+export default {
+  data()
+  {
+    return {
+      persons: []
+    };
+  },
+}
+</script>
 <style>
-#app {
+body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,6 +26,7 @@
   height: 100vh;
   justify-content: center;
   grid-template-rows: 0.1fr;
+  background-color: antiquewhite;
 }
 
 nav {
