@@ -1,23 +1,12 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <Persons msg="Jifity Transactions" />
-    <jifity-transactions></jifity-transactions>
+    <nav>
+      <router-link to="/">Persons</router-link> |
+      <router-link to="/Transactions">Transactions</router-link>
+    </nav>
+    <router-view />
   </div>
 </template>
-
-<script>
-import JifityTransactions from './components/JifityTransactions.vue';
-import Persons from './components/Persons.vue';
-
-export default {
-  name: 'App',
-  components: {
-    Persons,
-    JifityTransactions
-  }
-}
-</script>
 
 <style>
 #app {
@@ -26,6 +15,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
