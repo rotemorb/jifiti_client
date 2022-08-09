@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>Jifity Transactions</h1>
     <nav>
       <router-link to="/">Persons</router-link> |
       <router-link to="/Transactions">Transactions</router-link>
@@ -15,6 +16,10 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: grid;
+  height: 100vh;
+  justify-content: center;
+  grid-template-rows: 0.1fr;
 }
 
 nav {
