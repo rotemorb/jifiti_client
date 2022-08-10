@@ -1,7 +1,7 @@
 .tableSettings {
   overflow-x: auto;
   overflow-y: overlay;
-  height: 90vh;
+  height: 70vh;
 }
 
 table {
@@ -9,12 +9,10 @@ table {
   width: 750px;
   border-collapse: collapse;
   border: 3px solid #44475c;
-  margin: 10px 10px 0 10px;
   position: relative;
 }
 
 table th {
-  text-transform: uppercase;
   text-align: left;
   background: #44475c;
   color: #fff;

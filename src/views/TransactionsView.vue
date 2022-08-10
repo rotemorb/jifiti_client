@@ -1,6 +1,5 @@
 <template>
   <div id="transactionsData">
-    <h1>Transactions</h1>
     <nav>
       <router-link to="/" class="back-to">&#8592; Back to Persons</router-link>
     </nav>
@@ -19,16 +18,21 @@
             <th>transType</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          <tr v-for="transaction in transactionsPerCard" :key="transaction.id">
+            <td>{{ transaction.cardNo }}</td>
+            <td>{{ transaction.issuer }}</td>
+            <td>{{ transaction.amount }}$</td>
+            <td>
+              {{
+                Array.from(transactionTypes).find((type) => {
+                  return type.id == transaction.transType;
+                }).type
+              }}
+            </td>
+          </tr>
+        </tbody>
       </table>
-      <tbody>
-        <tr v-for="transaction in transactions" :key="transaction.id">
-          <td>{{ transaction.cardId }}</td>
-          <td>{{ transaction.id }}</td>
-          <td>{{ transaction.amount }}</td>
-          <td>{{ transaction.transType }}</td>
-        </tr>
-      </tbody>
     </div>
   </div>
 </template>
@@ -40,18 +44,43 @@ export default {
   data()
   {
     return {
+      cards: [],
       transactions: [],
+      transactionTypes: [
+        { id: 1, type: "AUTH" },
+        { id: 2, type: "COMMIT" },
+        { id: 3, type: "REFUND" }
+      ],
+      transactionsPerCard: []
     };
+  },
+  methods:
+  {
+    getCardData(id)
+    {
+      return Array.from(this.cardData).at(x => x.id == id);
+    }
   },
   mounted()
   {
-
-    transactionsService.getTransactions(this.$route.params.appId).then((res) =>
+    transactionsService.getCards(this.$route.params.appId).then((res) =>
     {
-      this.transactions = res.data;
-      console.log(this.transactions);
-    });
+      this.cards = res.data;
 
+      //For each cardData, get appropriate Transactions
+      this.cards.forEach(card =>
+      {
+        transactionsService.getTransactions(card.id).then(res =>
+        {
+          this.transactions = res.data;
+          this.transactions.forEach(trans =>
+          {
+            this.transactionsPerCard.push({ cardNo: card.cardNo, amount: trans.amount, issuer: card.issuer, transType: trans.transType });
+          });
+        });
+
+      });
+    });
   },
 }
 </script>
@@ -62,7 +91,9 @@ export default {
   justify-items: center;
 }
 .personDetails {
-  width: 12rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 .back-to {
   color: #42b983;
